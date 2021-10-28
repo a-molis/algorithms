@@ -27,17 +27,17 @@ public class Dijkstra {
 
         int source = 0;
         int target = 5;
-        System.out.println(dijkstra(source, target, graph));
+        System.out.println(Arrays.toString(dijkstra(source, target, graph)));
     }
 
-    private static int dijkstra(int source, int target, Graph graph) {
+    private static int[] dijkstra(int source, int target, Graph graph) {
         Comparator<Edge> comparator = new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {
                 return o1.weight - o2.weight;
             }
         };
-
+        int[] parent = new int[graph.size];
         boolean[] visited = new boolean[graph.size];
         Arrays.fill(visited, false);
         int[] dist = new int[graph.size];
@@ -59,10 +59,11 @@ public class Dijkstra {
                 if (currentDist < dist[next.value]) {
                     dist[next.value] = currentDist;
                     pq.add(new Edge(next.value, currentDist));
+                    parent[next.value] = cur.value;
                 }
                 next = next.next;
             }
         }
-        return dist[target];
+        return parent;
     }
 }
