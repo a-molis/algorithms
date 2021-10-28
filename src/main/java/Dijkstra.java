@@ -41,6 +41,7 @@ public class Dijkstra {
         boolean[] visited = new boolean[graph.size];
         Arrays.fill(visited, false);
         int[] dist = new int[graph.size];
+        Arrays.fill(dist, Integer.MAX_VALUE);
         dist[source] = 0;
         PriorityQueue<Edge> pq = new PriorityQueue<>(comparator);
         pq.add(new Edge(source, 0));
