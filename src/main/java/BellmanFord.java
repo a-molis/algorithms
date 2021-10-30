@@ -19,12 +19,16 @@ public class BellmanFord {
     }
 
     public static int[][] bellmanFord(int source, Graph graph) {
-        int[][] dist = new int[graph.vertices][graph.numEdges];
+        int[][] dist = new int[graph.vertices][graph.vertices];
         for (int[] d: dist) {
             Arrays.fill(d, Integer.MAX_VALUE);
         }
         dist[0][source] = 0;
         for (int i=1; i<graph.vertices - 1; i++)  {
+            for(int[] d: dist) {
+                System.out.println(Arrays.toString(d));
+            }
+            System.out.println();
             for (int v=0; v<graph.vertices; v++) {
                 Edge curNeighbor = graph.getNeighbors(v);
                 while (curNeighbor != null) {
