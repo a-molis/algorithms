@@ -1,28 +1,31 @@
-import java.util.Comparator;
-
 public class Graph {
+    int numEdges;
+    int vertices;
     int size;
     Edge[] graph;
 
+    /**
+     * new graph
+     * @param size number of nodes in graph
+     */
     public Graph(int size) {
         this.size = size;
         this.graph = new Edge[size];
+        this.numEdges = 0;
+        this.vertices = size;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void addEdge(int source, int value, int weight) {
-        Edge cur = graph[source];
+    public void addEdge(int from, int to, int weight) {
+        this.numEdges++;
+        Edge cur = graph[from];
         if (cur == null) {
-            graph[source] = new Edge(value, weight);
+            graph[from] = new Edge(to, weight);
             return;
         }
         while (cur.next != null) {
             cur = cur.next;
         }
-        cur.next = new Edge(value, weight);
+        cur.next = new Edge(to, weight);
     }
 
     public Edge getNeighbors(int source) {
