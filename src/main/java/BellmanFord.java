@@ -26,16 +26,16 @@ public class BellmanFord {
     }
     dist[0][source] = 0;
 
-    // looping through all vertices skipping source
-    for (int i = 1; i < graph.vertices - 1; i++) {
+    // looping through the number of edges going vertically down
+    for (int i = 1; i < graph.vertices; i++) {
       for (int[] d : dist) {
         System.out.println(Arrays.toString(d));
       }
       System.out.println();
 
-      // Looping through possible number of edges to use
+      // Looping through possible number of vertices going horizontally
       for (int v = 0; v < graph.vertices; v++) {
-        Edge curNeighbor = graph.getNeighbors(v);
+        Edge curNeighbor = graph.getIncoming(v);
 
         // Looping through all of the neighbors
         int curNeighborMin = 999;
@@ -43,9 +43,6 @@ public class BellmanFord {
           int neighborValue = curNeighbor.value;
           int neighborWeight = curNeighbor.weight;
           int curNum = dist[i - 1][neighborValue];
-          if (curNum == 999) {
-            curNum = 0;
-          }
           curNeighborMin = Math.min(curNum + neighborWeight, curNeighborMin);
           curNeighbor = curNeighbor.next;
         }
