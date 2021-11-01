@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class SubsetSums {
+public class KnapSack {
     static int[] weights = new int[] {2, 2, 2, 5};
     static int W = 6;
 
