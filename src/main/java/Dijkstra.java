@@ -27,10 +27,10 @@ public class Dijkstra {
 
         int source = 0;
         int target = 5;
-        System.out.println(Arrays.toString(dijkstra(source, target, graph)));
+        System.out.println(Arrays.toString(dijkstra(source, graph)));
     }
 
-    private static int[] dijkstra(int source, int target, Graph graph) {
+    private static int[] dijkstra(int source, Graph graph) {
         Comparator<Edge> comparator = new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {
