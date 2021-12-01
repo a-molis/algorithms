@@ -1,6 +1,6 @@
 public class KMPMatching {
   public static void main(String[] args) {
-    char[] pattern = {'a', 'b', 'a', 'b', 'a'};
+    char[] pattern = {'a', 'b', 'a', 'b'};
     char[] target = {'a', 'b', 'a', 'b', 'a', 'b', 'a', 'b'};
     int matches = kmpMatching(target, pattern);
     System.out.println(matches);
@@ -17,7 +17,6 @@ public class KMPMatching {
       }
       if (p[k + 1] == p[q]) {
         k = k + 1;
-        System.out.println(q);
       }
 
       pi[q] = k + 1;
@@ -29,16 +28,16 @@ public class KMPMatching {
     int m = P.length;
     int n = T.length;
     int[] pi = computePi(P);
-    int q = 0;
+    int q = -1;
     int matches = 0;
     for (int i=0; i<n; i++) {
-      while (q > 0 && P[q+ 1] != T[i]) {
+      while (q > 0 && P[q + 1] != T[i]) {
         q = pi[q];
       }
       if (P[q + 1] == T[i]) {
         q = q + 1;
       }
-      if (q == m) {
+      if (q + 1 == m) {
         System.out.println("Match found");
         matches++;
         q = pi[q];
